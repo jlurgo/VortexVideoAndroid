@@ -9,7 +9,7 @@ $(function () {
     //var socket = io.connect('http://router-vortex.herokuapp.com');
     //var conector_socket = new NodoConectorSocket(socket);
     
-    router.conectarBidireccionalmenteCon(conector_socket);
+    //router.conectarBidireccionalmenteCon(conector_socket);
     
     var nodo_app_vxv = new NodoAppVortexVideo();        
     router.conectarBidireccionalmenteCon(nodo_app_vxv);   
