@@ -37,7 +37,9 @@ NodoTransmisorVideo.prototype.start = function(){
     
     this.portal.pedirMensajes(new FiltroAND([new FiltroXClaveValor("tipoDeMensaje", "vortex.video.pedidoDeFrame"),
                                              new FiltroXClaveValor("usuarioTransmisor", this.o.nombreUsuario)]),
-                                            this.pedidoDeFrameRecibido.bind(this));
+                                            function(mensaje){
+                                                _this.pedidoDeFrameRecibido(mensaje);
+                                            });
 };
 
 NodoTransmisorVideo.prototype.enviarFrame = function(){
