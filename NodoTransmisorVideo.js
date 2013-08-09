@@ -62,7 +62,8 @@ NodoTransmisorVideo.prototype.enviarFrame = function(){
     }, 
     {   quality: 10 ,
         targetWidth: 320,
-        targetHeight: 240
+        targetHeight: 240,
+        destinationType: navigator.camera.DestinationType.DATA_URL
        });
     
     
