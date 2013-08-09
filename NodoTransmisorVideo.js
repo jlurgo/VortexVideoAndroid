@@ -55,7 +55,7 @@ NodoTransmisorVideo.prototype.enviarFrame = function(){
         _this.portal.enviarMensaje({
             tipoDeMensaje: "vortex.video.frame",
             usuarioTransmisor: _this.o.nombreUsuario,
-            frame: imagen_serializada
+            frame: "data:image/jpeg;base64," + imagen_serializada
         });
     }, function(){
         alert("Falló adquisicion de imagen");
@@ -63,6 +63,7 @@ NodoTransmisorVideo.prototype.enviarFrame = function(){
     {   quality: 10 ,
         targetWidth: 320,
         targetHeight: 240,
+        encodingType: Camera.EncodingType.JPEG,
         destinationType: navigator.camera.DestinationType.DATA_URL
        });
     
