@@ -1,4 +1,4 @@
-$(function () { 
+var onDeviceReady = function() {
     var router =  new NodoRouter("principal"); 
             
     //var clienteHTTP = new NodoClienteHTTP('http://localhost:3000', 100);             
@@ -15,4 +15,19 @@ $(function () {
     router.conectarBidireccionalmenteCon(nodo_app_vxv);   
     
     nodo_app_vxv.dibujarEn($('#panel_principal'))
+};
+
+$(document).ready(function() {  
+    // are we running in native app or in browser?
+    window.isphone = false;
+    if(document.URL.indexOf("file://") == -1) {
+        window.isphone = true;
+    }
+
+    if(window.isphone) {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    } else {
+        onDeviceReady();
+    }
 });
+
