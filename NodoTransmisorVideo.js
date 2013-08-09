@@ -43,17 +43,26 @@ NodoTransmisorVideo.prototype.start = function(){
 };
 
 NodoTransmisorVideo.prototype.enviarFrame = function(){
-    var canvas = $('<canvas>')[0];
-    canvas.width  = this.video.videoWidth;
-    canvas.height = this.video.videoHeight;
-    var ctx = canvas.getContext('2d');
-    ctx.drawImage(this.video, 0, 0);
-    var imagen_serializada = canvas.toDataURL('image/jpeg');
-    this.portal.enviarMensaje({
-        tipoDeMensaje: "vortex.video.frame",
-        usuarioTransmisor: this.o.nombreUsuario,
-        frame: imagen_serializada
-    });
+//    var canvas = $('<canvas>')[0];
+//    canvas.width  = this.video.videoWidth;
+//    canvas.height = this.video.videoHeight;
+//    var ctx = canvas.getContext('2d');
+//    ctx.drawImage(this.video, 0, 0);
+//    var imagen_serializada = canvas.toDataURL('image/jpeg');
+    var _this = this;
+    navigator.camera.getPicture(
+    function(imagen_serializada){
+        _this.portal.enviarMensaje({
+            tipoDeMensaje: "vortex.video.frame",
+            usuarioTransmisor: _this.o.nombreUsuario,
+            frame: imagen_serializada
+        });
+    }, function(){
+        alert("Falló adquisicion de imagen");
+    }, { quality: 50 });
+    
+    
+
 };
 
 NodoTransmisorVideo.prototype.pedidoDeFrameRecibido = function(mensaje){
