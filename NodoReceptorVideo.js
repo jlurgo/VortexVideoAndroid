@@ -9,9 +9,12 @@ NodoReceptorVideo.prototype.start = function(){
     this.img = this.ui.find("#img");
     this.lbl_nombre_usuario = this.ui.find("#lbl_nombre_usuario");
     this.lbl_nombre_usuario.text(this.o.nombreUsuarioTransmisor);
+    var _this = this;
     this.portal.pedirMensajes(new FiltroAND([new FiltroXClaveValor("tipoDeMensaje", "vortex.video.frame"),
                                              new FiltroXClaveValor("usuarioTransmisor", this.o.nombreUsuarioTransmisor)]),
-                                            this.frameRecibido.bind(this));
+                                            function(mensaje){
+                                                _this.frameRecibido(mensaje);
+                                            });
     var _this = this;
     this.ui.click(function(){
         _this.portal.enviarMensaje({
