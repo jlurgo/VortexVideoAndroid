@@ -60,8 +60,7 @@ NodoTransmisorVideo.prototype.enviarFrame = function(){
     }, function(){
         alert("Falló adquisicion de imagen");
     }, 
-    {   quality: 50 ,
-        encodingType: Camera.EncodingType.JPEG,
+    {   quality: 10 ,
         targetWidth: 320,
         targetHeight: 240
        });
